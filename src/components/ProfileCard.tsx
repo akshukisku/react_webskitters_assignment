@@ -8,40 +8,73 @@ const ProfileCard = ({
   profile,
 }: ProfileCardProps) => {
   return (
-    <div className="border p-4 rounded mb-5 shadow">
-      <img
-        src={profile.avatar_url}
-        alt={profile.login}
-        className="w-24 h-24 rounded-full"
-      />
+   <div className="bg-white shadow-lg rounded-2xl p-6 w-[700px] mx-auto border border-gray-200">
+  
+  <div className="flex items-start gap-6">
+    
+    {/* Avatar */}
+    <img
+      src={profile.avatar_url}
+      alt={profile.login}
+      className="w-32 h-32 rounded-full border-4 border-gray-100 shadow-md"
+    />
 
-      <h2 className="text-xl font-bold mt-2">
-        {profile.name}
+    {/* Profile Info */}
+    <div className="flex flex-col">
+      <h2 className="text-3xl font-bold text-gray-800">
+        {profile.name || profile.login}
       </h2>
 
-      <p className="text-gray-600">
-        {profile.bio}
+      <p className="text-gray-500 text-lg mt-1">
+        @{profile.login}
       </p>
 
-      <div className="flex gap-4 mt-3">
-        <p>
-          Followers: {profile.followers}
-        </p>
+      <p className="text-gray-600 mt-4 w-[420px] leading-7">
+        {profile.bio || "No bio available"}
+      </p>
 
-        <p>
-          Following: {profile.following}
-        </p>
+      {/* Stats */}
+      <div className="flex gap-10 mt-6">
+        <div>
+          <h3 className="text-2xl font-bold text-gray-800">
+            {profile.followers}
+          </h3>
+          <p className="text-gray-500">
+            Followers
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-2xl font-bold text-gray-800">
+            {profile.following}
+          </h3>
+          <p className="text-gray-500">
+            Following
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-2xl font-bold text-gray-800">
+            {profile.public_repos}
+          </h3>
+          <p className="text-gray-500">
+            Repositories
+          </p>
+        </div>
       </div>
 
+      {/* Button */}
       <a
         href={profile.html_url}
         target="_blank"
         rel="noreferrer"
-        className="inline-block mt-4 text-blue-500"
+        className="mt-6 w-fit px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition duration-300"
       >
-        View Profile
+        View GitHub Profile
       </a>
     </div>
+  </div>
+</div>
   );
 };
 

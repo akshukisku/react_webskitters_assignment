@@ -50,64 +50,85 @@ const Homepage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!username.trim()) return;
-
     setQuery(username);
   };
 
   const clearSearch = () => {
     setUsername("");
     setProfile(null);
-
     setRepos([]);
+    setIsError(null)
   };
 
   return (
-    <div className="p-5 max-w-4xl mx-auto">
-      {/* Search Form */}
-      <form onSubmit={handleSubmit} className="flex gap-2 mb-5">
-        <input
-          type="text"
-          placeholder="Enter GitHub Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="border px-4 py-2 rounded-full w-full"
-        />
+   <div className="min-h-screen bg-gray-100 py-10 px-4">
+       {/* Search Form */}
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col sm:flex-row gap-3 mb-8"
+    >
+      <input
+        type="text"
+        placeholder="Enter GitHub Username..."
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="flex-1 border border-gray-300 px-5 py-3 rounded-xl outline-none focus:ring-2 focus:ring-black"
+      />
 
-        <button type="submit" className="border px-4 rounded">
-          Search
-        </button>
+      <button
+        type="submit"
+        className="bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition"
+      >
+        Search
+      </button>
 
-        <button
-          type="button"
-          onClick={clearSearch}
-          className="border px-4 rounded"
-        >
-          Clear
-        </button>
-      </form>
+      <button
+        type="button"
+        onClick={clearSearch}
+        className="bg-red-500 text-white px-6 py-3 rounded-xl hover:bg-red-600 transition"
+      >
+        Clear
+      </button>
+    </form>
 
-      {/* Loading */}
-      {loading && <p className="text-blue-500 font-semibold">Loading...</p>}
+    {/* Loading */}
+    {loading && (
+      <div className="flex justify-center mb-5">
+        <p className="text-blue-500 font-semibold text-lg animate-pulse">
+          Loading...
+        </p>
+      </div>
+    )}
 
-      {/* Error */}
-      {isError && <p className="text-red-500 font-semibold">{isError}</p>}
+    {/* Error */}
+    {isError && (
+      <div className="text-red-600">
+        {isError}
+      </div>
+    )}
 
-      {/* Profile */}
-      {!loading && profile && <ProfileCard profile={profile} />}
+    {/* Profile */}
+    {!loading && profile && (
+      <div className="mb-10">
+        <ProfileCard profile={profile} />
+      </div>
+    )}
 
-      {/* Repository */}
-      {!loading && repos.length > 0 && (
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Repositories</h2>
+    {/* Repository */}
+    {!loading && repos?.length > 0 && (
+      <div>
+        <h2 className="text-2xl font-bold mb-5 border-b pb-2">
+          Top Repositories
+        </h2>
 
+        <div className="grid gap-4">
           {repos.slice(0, 5).map((repo) => (
             <RepositoryCard key={repo.id} repo={repo} />
           ))}
         </div>
-      )}
-    </div>
+      </div>
+    )}
+</div>
   );
 };
 
