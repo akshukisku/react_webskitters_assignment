@@ -1,12 +1,9 @@
-import type { profiledesc } from "../typescript/interface/username.interface";
+import type {  ProfileCardint } from "../typescript/interface/username.interface";
 
-interface ProfileCardProps {
-  profile: profiledesc;
-}
 
 const ProfileCard = ({
   profile,
-}: ProfileCardProps) => {
+}: ProfileCardint) => {
   return (
    <div className="bg-white shadow-lg rounded-2xl p-6 w-[700px] mx-auto border border-gray-200">
   

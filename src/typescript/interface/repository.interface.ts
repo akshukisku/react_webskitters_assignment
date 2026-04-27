@@ -6,3 +6,6 @@ export interface repository{
     html_url:string
     id:number;
 }
+export interface RepositoryCardint {
+  repo: repository;
+}

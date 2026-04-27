@@ -12,3 +12,7 @@ export interface profiledesc {
     html_url:string
     followers:number
 }
+
+export interface ProfileCardint {
+  profile: profiledesc;
+}

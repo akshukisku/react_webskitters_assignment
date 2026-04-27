@@ -1,4 +1,4 @@
-import type { repository } from "../typescript/interface/repository.interface";
+import type {  RepositoryCardint } from "../typescript/interface/repository.interface";
 
 import {
   Star,
@@ -6,13 +6,11 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-interface RepositoryCardProps {
-  repo: repository;
-}
+
 
 const RepositoryCard = ({
   repo,
-}: RepositoryCardProps) => {
+}: RepositoryCardint) => {
   return (
     <div className="bg-white border border-gray-200 rounded-2xl px-5 py-3 shadow-md hover:shadow-xl transition duration-300 mb-5">
       

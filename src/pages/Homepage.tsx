@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 
 import { api } from "../lib/axiosInstance";
 
 import type { profiledesc } from "../typescript/interface/username.interface";
 
+import type { repository } from "../typescript/interface/repository.interface";
 import ProfileCard from "../components/ProfileCard";
 import RepositoryCard from "../components/RepositoryCard";
-import type { repository } from "../typescript/interface/repository.interface";
 
 const Homepage = () => {
   const [username, setUsername] = useState("");
@@ -48,7 +48,7 @@ const Homepage = () => {
     fetchData();
   }, [query]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     setQuery(username);
   };
